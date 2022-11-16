@@ -74,7 +74,7 @@ int main() {
 	std::cout << "Итоговый массив: ";
 	show_arr(result_arr, n);
 	std::cout << std::endl;
-	delete[] resault_arr;
+	delete[] result_arr;
 	
 	//Задача 3.Площадь произвольного треугольника
 	std::cout << "Задача 3\nСтороны треугольника: ";
