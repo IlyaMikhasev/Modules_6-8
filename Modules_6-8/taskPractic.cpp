@@ -1,4 +1,4 @@
-// Персональный шаблон
+// РџРµСЂСЃРѕРЅР°Р»СЊРЅС‹Р№ С€Р°Р±Р»РѕРЅ
 #include <iostream>
 #include <ctime>
 #include <cstdlib>
@@ -17,7 +17,7 @@ void fill_arr(T arr[], const int length, int begin, int end) {
 template <typename T>
 void show_arr(T arr[], const int length) {
 	if (length <= 0)
-		throw std::invalid_argument("Длинна массива должна быть больше нуля");
+		throw std::invalid_argument("Р”Р»РёРЅРЅР° РјР°СЃСЃРёРІР° РґРѕР»Р¶РЅР° Р±С‹С‚СЊ Р±РѕР»СЊС€Рµ РЅСѓР»СЏ");
 
 	std::cout << '[';
 	for (int i = 0; i < length; i++)
@@ -32,7 +32,7 @@ void append(T *&arr, int length, T val) {
 		tmp[i] = arr[i];
 	tmp[length] = val;
 	delete[]arr;
-	arr = tmp; //указатель arr направлен на область памяти tmp
+	arr = tmp; //СѓРєР°Р·Р°С‚РµР»СЊ arr РЅР°РїСЂР°РІР»РµРЅ РЅР° РѕР±Р»Р°СЃС‚СЊ РїР°РјСЏС‚Рё tmp
 }
 template <typename T>
 void memory(T *& ptr, int length);
@@ -41,58 +41,58 @@ T* posArr_concat(T arr1[],const int length1,T arr2[],const int length2, int &num
 int main() {
 	setlocale(LC_ALL, "Russian");
 	int n, m;
-	//Задача 1.Выделение памяти
+	//Р—Р°РґР°С‡Р° 1.Р’С‹РґРµР»РµРЅРёРµ РїР°РјСЏС‚Рё
 	
-	std::cout << "задача 1\nВведите количество элементов массива -> ";
+	std::cout << "Р·Р°РґР°С‡Р° 1\nР’РІРµРґРёС‚Рµ РєРѕР»РёС‡РµСЃС‚РІРѕ СЌР»РµРјРµРЅС‚РѕРІ РјР°СЃСЃРёРІР° -> ";
 	std::cin >> n;
 	int* pArr1 = nullptr; 
 	try	{
 		memory(pArr1, n);
 		fill_arr(pArr1, n, 2, 8);
-		std::cout << "Итоговый массив: ";
+		std::cout << "РС‚РѕРіРѕРІС‹Р№ РјР°СЃСЃРёРІ: ";
 		show_arr(pArr1, n);
 		std::cout << "\n";
 		delete pArr1;
 	}
 	catch (const std::out_of_range& ex){
-		std::cout << "Ошибка: " << ex.what() << "\n\n";
+		std::cout << "РћС€РёР±РєР°: " << ex.what() << "\n\n";
 	}
 	
-	//Задача 2.Положительные числа двух массивов
+	//Р—Р°РґР°С‡Р° 2.РџРѕР»РѕР¶РёС‚РµР»СЊРЅС‹Рµ С‡РёСЃР»Р° РґРІСѓС… РјР°СЃСЃРёРІРѕРІ
 	
-	std::cout << "Задача 2\n";
+	std::cout << "Р—Р°РґР°С‡Р° 2\n";
 	const int size1 = 7, size2 = 5;
 	int arr1[size1]{};
 	int arr2[size2]{};
 	fill_arr(arr1, size1, -5, 6);
 	fill_arr(arr2, size2, -10, 10);
-	std::cout << "Массив 1: ";
+	std::cout << "РњР°СЃСЃРёРІ 1: ";
 	show_arr(arr1, size1);
-	std::cout << "Массив 2: ";
+	std::cout << "РњР°СЃСЃРёРІ 2: ";
 	show_arr(arr2, size2);
 	int* result_arr = posArr_concat(arr1, size1, arr2, size2, n);
-	std::cout << "Итоговый массив: ";
+	std::cout << "РС‚РѕРіРѕРІС‹Р№ РјР°СЃСЃРёРІ: ";
 	show_arr(result_arr, n);
 	std::cout << std::endl;
 	delete[] result_arr;
 	
-	//Задача 3.Площадь произвольного треугольника
-	std::cout << "Задача 3\nСтороны треугольника: ";
+	//Р—Р°РґР°С‡Р° 3.РџР»РѕС‰Р°РґСЊ РїСЂРѕРёР·РІРѕР»СЊРЅРѕРіРѕ С‚СЂРµСѓРіРѕР»СЊРЅРёРєР°
+	std::cout << "Р—Р°РґР°С‡Р° 3\nРЎС‚РѕСЂРѕРЅС‹ С‚СЂРµСѓРіРѕР»СЊРЅРёРєР°: ";
 	triangle abc{ 5.5,10.0,9.1 };
 	std::cout << abc.a << ", " << abc.b << ", " << abc.c << '\n';
-	std::cout << "Площадь треугольника = " << tr_area(abc) << "\n\n";
+	std::cout << "РџР»РѕС‰Р°РґСЊ С‚СЂРµСѓРіРѕР»СЊРЅРёРєР° = " << tr_area(abc) << "\n\n";
 	
 
 	return 0;
 }
-//Выделяет память под массив
+//Р’С‹РґРµР»СЏРµС‚ РїР°РјСЏС‚СЊ РїРѕРґ РјР°СЃСЃРёРІ
 template <typename T>
 void memory(T*& ptr, int length) {
 	if (length < 0)
-		throw std::out_of_range("Длинна массива должна быть положительной!");
+		throw std::out_of_range("Р”Р»РёРЅРЅР° РјР°СЃСЃРёРІР° РґРѕР»Р¶РЅР° Р±С‹С‚СЊ РїРѕР»РѕР¶РёС‚РµР»СЊРЅРѕР№!");
 	ptr = new T[length];
 }
-//переносит положительные числа из двух массивов в третий массив
+//РїРµСЂРµРЅРѕСЃРёС‚ РїРѕР»РѕР¶РёС‚РµР»СЊРЅС‹Рµ С‡РёСЃР»Р° РёР· РґРІСѓС… РјР°СЃСЃРёРІРѕРІ РІ С‚СЂРµС‚РёР№ РјР°СЃСЃРёРІ
 template <typename T>
 T* posArr_concat(T arr1[], const int length1, T arr2[], const int length2, int& num) {
 	T* tmp_Arr = new T[0];
@@ -110,7 +110,7 @@ T* posArr_concat(T arr1[], const int length1, T arr2[], const int length2, int& 
 	num = tmp_size;
 	return tmp_Arr;
 }
-//нахождения площади треугольника по трем сторонам
+//РЅР°С…РѕР¶РґРµРЅРёСЏ РїР»РѕС‰Р°РґРё С‚СЂРµСѓРіРѕР»СЊРЅРёРєР° РїРѕ С‚СЂРµРј СЃС‚РѕСЂРѕРЅР°Рј
 double tr_area(triangle& T) {
 	double halfp = (T.a + T.b + T.c) / 2.0;
 	return sqrt(halfp*(halfp-T.a) * (halfp - T.b) * (halfp - T.c));
